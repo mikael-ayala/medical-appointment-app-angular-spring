@@ -26,10 +26,18 @@ export class LoginComponent {
   });
 
   onSubmit() {
-    this.authService.login(this.login).subscribe(result => this.returnToHome())
+    this.authService.login(this.login).subscribe(result => this.returnToHome(result))
   }
 
-  returnToHome() {
-    this.router.navigate(['']);
+  returnToHome(result: any) {
+    const role = JSON.parse(atob(result.token.split('.')[1])).role
+
+    if (role === 'ROLE_DOCTOR') {
+      this.router.navigate(['/doctor']);
+    }
+
+    if (role === 'ROLE_PATIENT') {
+      this.router.navigate(['/patient']);
+    }
   }
 }

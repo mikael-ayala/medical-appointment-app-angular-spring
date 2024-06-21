@@ -15,13 +15,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DoctorComponent } from './pages/doctor/doctor.component';
+import { PatientComponent } from './pages/patient/patient.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterPatientComponent,
-    RegisterDoctorComponent
+    RegisterDoctorComponent,
+    DoctorComponent,
+    PatientComponent
   ],
   imports: [
     BrowserModule,
