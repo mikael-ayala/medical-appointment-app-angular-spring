@@ -44,6 +44,7 @@ public class AuthController {
             newUser.setPassword(passwordEncoder.encode(body.password()));
             newUser.setEmail(body.email());
             newUser.setName(body.name());
+            newUser.setLastname(body.lastname());
             newUser.setRole(Role.ROLE_PATIENT);
 
             this.userRepository.save(newUser);
@@ -64,6 +65,7 @@ public class AuthController {
             newUser.setPassword(passwordEncoder.encode(body.password()));
             newUser.setEmail(body.email());
             newUser.setName(body.name());
+            newUser.setLastname(body.lastname());
             newUser.setRole(Role.ROLE_DOCTOR);
 
             this.userRepository.save(newUser);

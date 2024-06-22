@@ -32,6 +32,6 @@ export class RegisterDoctorComponent {
   }
 
   returnToHome() {
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 }
