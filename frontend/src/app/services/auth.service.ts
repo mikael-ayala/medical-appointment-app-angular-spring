@@ -34,6 +34,11 @@ export class AuthService {
     );
   }
 
+  logout() {
+    sessionStorage.clear()
+    this.changeRole('')
+  }
+
   patientRegister(body: PatientRegister): Observable<PatientRegister> {
     return this.http.post(this.baseUrl + '/patient-register', body);
   }
