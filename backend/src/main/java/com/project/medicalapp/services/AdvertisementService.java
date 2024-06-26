@@ -19,4 +19,11 @@ public class AdvertisementService {
         Page<Advertisement> page = advertisementRepository.searchAdvertisementWithUserAndSpecialties(pageable);
         return page.map(AdvertisementDTO::new);
     }
+
+    @Transactional(readOnly = true)
+    public AdvertisementDTO findById(Long id) {
+        Advertisement advertisement = advertisementRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Advertisement not found"));
+        return new AdvertisementDTO(advertisement);
+    }
 }

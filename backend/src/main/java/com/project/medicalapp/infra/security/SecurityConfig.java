@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/doctor-register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/specialties").permitAll()
                         .requestMatchers(HttpMethod.GET, "/advertisements").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/advertisements/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "user/admin").hasRole("DOCTOR")
                         .anyRequest().authenticated()
                 )
