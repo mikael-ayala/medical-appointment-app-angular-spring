@@ -1,8 +1,6 @@
 package com.project.medicalapp.infra.security;
 
-import com.project.medicalapp.entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -39,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/doctor-register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/specialties").permitAll()
                         .requestMatchers(HttpMethod.GET, "/advertisements").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/advertisements/**").hasRole("DOCTOR")
                         .requestMatchers(HttpMethod.GET, "/advertisements/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "user/admin").hasRole("DOCTOR")
                         .anyRequest().authenticated()

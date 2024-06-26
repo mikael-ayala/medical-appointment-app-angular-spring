@@ -8,6 +8,8 @@ import com.project.medicalapp.entities.User;
 import com.project.medicalapp.infra.security.TokenService;
 import com.project.medicalapp.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,5 +81,12 @@ public class AuthService {
         String token = this.tokenService.generateToken(newUser);
 
         return new ResponseDTO(newUser.getName(), token);
+    }
+
+    protected User authenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentName = authentication.getName();
+        return userRepository.findByEmail(currentName)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
