@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login';
+import { Login } from '../../models/login';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
-import { PatientRegister } from '../models/patient-register';
-import { DoctorRegister } from '../models/doctor-register';
-import { LoginResponse } from '../models/login-response.type';
+import { PatientRegister } from '../../models/patient-register';
+import { DoctorRegister } from '../../models/doctor-register';
+import { LoginResponse } from '../../models/login-response.type';
 
 @Injectable({
   providedIn: 'root'

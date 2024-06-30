@@ -14,9 +14,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DoctorComponent } from './pages/doctor/doctor.component';
 import { PatientComponent } from './pages/patient/patient.component';
+import { CreateAdvertisementComponent } from './pages/create-advertisement/create-advertisement.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { PatientComponent } from './pages/patient/patient.component';
     RegisterPatientComponent,
     RegisterDoctorComponent,
     DoctorComponent,
-    PatientComponent
+    PatientComponent,
+    CreateAdvertisementComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { PatientComponent } from './pages/patient/patient.component';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [
     provideAnimationsAsync()

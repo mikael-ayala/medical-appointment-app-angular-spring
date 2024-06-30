@@ -5,14 +5,16 @@ import { RegisterDoctorComponent } from './components/register-doctor/register-d
 import { RegisterPatientComponent } from './components/register-patient/register-patient.component';
 import { AppComponent } from './app.component';
 import { DoctorComponent } from './pages/doctor/doctor.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { PatientComponent } from './pages/patient/patient.component';
+import { CreateAdvertisementComponent } from './pages/create-advertisement/create-advertisement.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'patient-register', component: RegisterPatientComponent },
   { path: 'doctor-register', component: RegisterDoctorComponent },
   { path: 'doctor', component: DoctorComponent, canActivate: [AuthGuard], data: {role: 'ROLE_DOCTOR'} },
+  { path: 'create-advertisement', component: CreateAdvertisementComponent },
   { path: 'patient', component: PatientComponent, canActivate: [AuthGuard], data: {role: 'ROLE_PATIENT'} },
 ];
 
