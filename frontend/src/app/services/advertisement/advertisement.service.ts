@@ -14,6 +14,10 @@ export class AdvertisementService {
     this.baseUrl = 'http://localhost:8080/advertisements'
   }
 
+  findAll(pageNumber: string = '0', pageSize: string = '15') {
+    return this.http.get(this.baseUrl + `?page=${pageNumber}&size=${pageSize}`);
+  }
+
   insert(body: Advertisement): Observable<Advertisement> {
     var header = { headers: new HttpHeaders().set('Authorization',  `Bearer ${sessionStorage.getItem('auth-token')}`)}
 

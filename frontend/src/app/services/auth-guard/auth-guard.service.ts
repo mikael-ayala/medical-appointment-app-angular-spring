@@ -18,6 +18,15 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const authToken = sessionStorage.getItem('auth-token');
 
+    if (!route.data['role']) {
+      if (authToken) {
+        const role = JSON.parse(atob(authToken.split('.')[1])).role
+        this.authService.changeRole(role);
+      }
+
+      return true;
+    }
+
     if (authToken) {
       const role = JSON.parse(atob(authToken.split('.')[1])).role
       this.authService.changeRole(role);

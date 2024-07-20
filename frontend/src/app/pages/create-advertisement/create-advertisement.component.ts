@@ -14,6 +14,10 @@ import { Advertisement } from '../../models/advertisement';
 export class CreateAdvertisementComponent {
 
   advertisement: Advertisement;
+  advertisements: any = [];
+  totalPages: any = 0;
+  pageSize: any = 0;
+  currentPage: any = 0;
 
   specialties: Specialty[] | undefined = [];
 
@@ -35,7 +39,6 @@ export class CreateAdvertisementComponent {
 
   onSubmit() {
     this.advertisement.specialties = this.advertisement.specialties?.map(id => ({id}));
-    this.advertisementService.insert(this.advertisement).subscribe();
+    this.advertisementService.insert(this.advertisement).subscribe(() => this.router.navigate(['/']));
   }
-
 }

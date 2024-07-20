@@ -1,3 +1,4 @@
+import { LoaderService } from './services/loader/loader.service';
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +13,8 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public LoaderService: LoaderService
   ) {
     this.authService.currentRole.subscribe((role) => {
       this.role = role;
