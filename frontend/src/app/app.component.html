@@ -3,16 +3,19 @@
 </div>
 <mat-toolbar class="header">
   <h1>Doctor Appointment App</h1>
-  <div class="header-buttons" *ngIf="!role">
-    <button mat-raised-button color="primary" routerLink="login">Entrar</button>
-    <button mat-button color="primary" routerLink="patient-register">Cadastrar Paciente</button>
-    <button mat-button color="primary" routerLink="doctor-register">Cadastrar Médico</button>
-  </div>
-  <div class="header-buttons" *ngIf="role">
-    <div class="header-buttons" *ngIf="role == 'ROLE_DOCTOR'">
-      <button mat-raised-button color="primary" routerLink="create-advertisement">Cadastrar Anúncio</button>
+  <div class="header-buttons" >
+    <button mat-raised-button color="primary" routerLink="">Anúncios</button>
+    <div class="header-buttons" *ngIf="!role">
+      <button mat-raised-button color="primary" routerLink="login">Entrar</button>
+      <button mat-button color="primary" routerLink="patient-register">Cadastrar Paciente</button>
+      <button mat-button color="primary" routerLink="doctor-register">Cadastrar Médico</button>
     </div>
-    <button mat-raised-button color="primary" (click)="logout()">Sair</button>
+    <div class="header-buttons" *ngIf="role">
+      <div *ngIf="role == 'ROLE_DOCTOR'">
+        <button mat-raised-button color="primary" routerLink="create-advertisement">Cadastrar Anúncio</button>
+      </div>
+      <button mat-button color="primary" (click)="logout()">Sair</button>
+    </div>
   </div>
 </mat-toolbar>
 <main class="main">
