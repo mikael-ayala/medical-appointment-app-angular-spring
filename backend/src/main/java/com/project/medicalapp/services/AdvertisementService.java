@@ -22,8 +22,11 @@ public class AdvertisementService {
     private final AuthService authService;
 
     @Transactional(readOnly = true)
-    public Page<AdvertisementDTO> findAll(Pageable pageable) {
-        Page<Advertisement> page = advertisementRepository.searchAdvertisementWithUserAndSpecialties(pageable);
+    public Page<AdvertisementDTO> findAll(String specialtyId, Pageable pageable) {
+        Long parsedSpecialtyId = null;
+        if (!specialtyId.equals("")) parsedSpecialtyId = Long.parseLong(specialtyId);
+
+        Page<Advertisement> page = advertisementRepository.searchAdvertisementWithUserAndSpecialties(parsedSpecialtyId, pageable);
         return page.map(AdvertisementDTO::new);
     }
 

@@ -16,8 +16,10 @@ public class AdvertisementController {
     private final AdvertisementService advertisementService;
 
     @GetMapping
-    public ResponseEntity<Page<AdvertisementDTO>> findAll(Pageable pageable) {
-        Page<AdvertisementDTO> advertisements = advertisementService.findAll(pageable);
+    public ResponseEntity<Page<AdvertisementDTO>> findAll(
+            @RequestParam(value = "specialtyId", defaultValue = "") String specialtyId,
+            Pageable pageable) {
+        Page<AdvertisementDTO> advertisements = advertisementService.findAll(specialtyId ,pageable);
         return ResponseEntity.ok(advertisements);
     }
 
