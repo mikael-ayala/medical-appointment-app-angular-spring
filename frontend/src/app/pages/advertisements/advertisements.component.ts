@@ -1,8 +1,9 @@
+import { Specialty } from './../../models/specialty';
 import { Component } from '@angular/core';
 import { AdvertisementService } from '../../services/advertisement/advertisement.service';
 import { Advertisement } from '../../models/advertisement';
-import { Specialty } from '../../models/specialty';
 import { PageEvent } from '@angular/material/paginator';
+import { SpecialtyService } from '../../services/specialty/specialty.service';
 
 @Component({
   selector: 'app-advertisements',
@@ -15,14 +16,22 @@ export class AdvertisementsComponent {
   pageSize: any = 0;
   currentPage: any = 0;
 
-  constructor(private advertisementService: AdvertisementService) {}
+    specialties: Specialty[] | undefined = [];
+    specialtyId: string = '';
+
+  constructor(
+    private advertisementService: AdvertisementService,
+    private specialtyService: SpecialtyService
+  ) {
+    specialtyService.findAll().subscribe(specialties => this.specialties = specialties);
+  }
 
   ngOnInit() {
     this.getAdvertisements();
   }
 
-  private getAdvertisements() {
-      this.advertisementService.findAll().subscribe(data => {
+  private getAdvertisements(specialtyId: string = '') {
+      this.advertisementService.findAll('0', specialtyId).subscribe(data => {
       this.currentPage = data['pageable' as keyof Object]['pageNumber' as keyof Object];
       this.pageSize = data['size' as keyof Object];
       this.totalElements = data['totalElements' as keyof Object];
@@ -37,8 +46,8 @@ export class AdvertisementsComponent {
     });
   }
 
-  private changePageAdvertisements(currentPage: string) {
-    this.advertisementService.findAll(currentPage).subscribe(data => {
+  private changePageAdvertisements(currentPage: string, specialtyId: string = '') {
+    this.advertisementService.findAll(currentPage, specialtyId).subscribe(data => {
       this.advertisements = data['content' as keyof Object];
 
       this.advertisements.map((advertisement: Advertisement) => {
@@ -53,5 +62,9 @@ export class AdvertisementsComponent {
   pageChanged(event: PageEvent) {
     this.currentPage = event.pageIndex;
     this.changePageAdvertisements(this.currentPage);
+  }
+
+  filterResults(value: string) {
+    this.advertisements = this.getAdvertisements(value);
   }
 }

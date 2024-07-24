@@ -14,8 +14,8 @@ export class AdvertisementService {
     this.baseUrl = 'http://localhost:8080/advertisements'
   }
 
-  findAll(pageNumber: string = '0', pageSize: string = '15') {
-    return this.http.get(this.baseUrl + `?page=${pageNumber}&size=${pageSize}`);
+  findAll(pageNumber: string = '0', specialtyId: string = '', pageSize: string = '15') {
+    return this.http.get(this.baseUrl + `?page=${pageNumber}&specialtyId=${specialtyId}&size=${pageSize}`);
   }
 
   insert(body: Advertisement): Observable<Advertisement> {
