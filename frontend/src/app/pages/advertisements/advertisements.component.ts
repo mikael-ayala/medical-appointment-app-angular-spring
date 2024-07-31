@@ -4,6 +4,8 @@ import { AdvertisementService } from '../../services/advertisement/advertisement
 import { Advertisement } from '../../models/advertisement';
 import { PageEvent } from '@angular/material/paginator';
 import { SpecialtyService } from '../../services/specialty/specialty.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-advertisements',
@@ -16,14 +18,22 @@ export class AdvertisementsComponent {
   pageSize: any = 0;
   currentPage: any = 0;
 
-    specialties: Specialty[] | undefined = [];
-    specialtyId: string = '';
+  specialties: Specialty[] | undefined = [];
+  specialtyId: string = '';
+
+  role: string = '';
 
   constructor(
     private advertisementService: AdvertisementService,
-    private specialtyService: SpecialtyService
+    private specialtyService: SpecialtyService,
+    private authService: AuthService,
+    public router: Router
   ) {
     specialtyService.findAll().subscribe(specialties => this.specialties = specialties);
+
+    this.authService.currentRole.subscribe((role) => {
+      this.role = role;
+    })
   }
 
   ngOnInit() {

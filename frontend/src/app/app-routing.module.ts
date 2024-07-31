@@ -9,6 +9,7 @@ import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { PatientComponent } from './pages/patient/patient.component';
 import { CreateAdvertisementComponent } from './pages/create-advertisement/create-advertisement.component';
 import { AdvertisementsComponent } from './pages/advertisements/advertisements.component';
+import { CreateAppointmentComponent } from './pages/create-appointment/create-appointment.component';
 
 const routes: Routes = [
   { path: '', component: AdvertisementsComponent, canActivate: [AuthGuard] },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'doctor', component: DoctorComponent, canActivate: [AuthGuard], data: {role: 'ROLE_DOCTOR'} },
   { path: 'create-advertisement', component: CreateAdvertisementComponent, canActivate: [AuthGuard], data: {role: 'ROLE_DOCTOR'} },
   { path: 'patient', component: PatientComponent, canActivate: [AuthGuard], data: {role: 'ROLE_PATIENT'} },
+  { path: 'appointment', component: CreateAppointmentComponent, canActivate: [AuthGuard], data: {role: 'ROLE_PATIENT'} },
 ];
 
 @NgModule({

@@ -24,6 +24,7 @@ import { CreateAdvertisementComponent } from './pages/create-advertisement/creat
 import { AdvertisementsComponent } from './pages/advertisements/advertisements.component';
 import { InterceptorService } from './services/interceptor/interceptor.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CreateAppointmentComponent } from './pages/create-appointment/create-appointment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     DoctorComponent,
     PatientComponent,
     CreateAdvertisementComponent,
-    AdvertisementsComponent
+    AdvertisementsComponent,
+    CreateAppointmentComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@
       <mat-chip-set aria-label="Especialidades">
         <mat-chip *ngFor="let specialty of advertisement.specialties">{{ specialty }}</mat-chip>
       </mat-chip-set>
+      <button *ngIf="role == 'ROLE_PATIENT'" mat-raised-button color="primary" (click)="this.router.navigate(['/appointment'])">Marcar Horário</button>
     </mat-card-footer>
   </mat-card>
 </div>
