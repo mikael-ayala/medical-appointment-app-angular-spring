@@ -74,6 +74,10 @@ export class AdvertisementsComponent {
     this.changePageAdvertisements(this.currentPage);
   }
 
+  goToAppointmentPage(id: number) {
+    this.router.navigate(['/appointment', id]);
+  }
+
   filterResults(value: string) {
     this.advertisements = this.getAdvertisements(value);
   }

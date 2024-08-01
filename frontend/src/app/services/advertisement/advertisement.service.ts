@@ -14,6 +14,10 @@ export class AdvertisementService {
     this.baseUrl = 'http://localhost:8080/advertisements'
   }
 
+  findById(id: number) {
+    return this.http.get(this.baseUrl + `/${id}`)
+  }
+
   findAll(pageNumber: string = '0', specialtyId: string = '', pageSize: string = '15') {
     return this.http.get(this.baseUrl + `?page=${pageNumber}&specialtyId=${specialtyId}&size=${pageSize}`);
   }

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'doctor', component: DoctorComponent, canActivate: [AuthGuard], data: {role: 'ROLE_DOCTOR'} },
   { path: 'create-advertisement', component: CreateAdvertisementComponent, canActivate: [AuthGuard], data: {role: 'ROLE_DOCTOR'} },
   { path: 'patient', component: PatientComponent, canActivate: [AuthGuard], data: {role: 'ROLE_PATIENT'} },
-  { path: 'appointment', component: CreateAppointmentComponent, canActivate: [AuthGuard], data: {role: 'ROLE_PATIENT'} },
+  { path: 'appointment/:id', component: CreateAppointmentComponent, canActivate: [AuthGuard], data: {role: 'ROLE_PATIENT'} },
 ];
 
 @NgModule({
