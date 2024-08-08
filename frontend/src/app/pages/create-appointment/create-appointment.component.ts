@@ -17,6 +17,8 @@ export class CreateAppointmentComponent {
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(param => this.id = param['id' as keyof Object]);
-    this.advertisementService.findById(this.id).subscribe(advertisement => this.advertisement = advertisement);
+    this.advertisementService.findById(this.id).subscribe(advertisement => {
+      this.advertisement = advertisement;
+    });
   }
 }
