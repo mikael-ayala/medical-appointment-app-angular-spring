@@ -17,5 +17,14 @@
     </mat-card>
   </div>
   <div class="right">
+    <mat-form-field>
+      <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
+         [min]="minDate" [max]="maxDate">
+      <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
+         [stepHour]="1" [color]="color" [touchUi]="false" [enableMeridian]="false"
+         [disableMinute]="true" [hideTime]="false">
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
   </div>
 </div>

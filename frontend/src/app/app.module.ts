@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -25,6 +26,12 @@ import { AdvertisementsComponent } from './pages/advertisements/advertisements.c
 import { InterceptorService } from './services/interceptor/interceptor.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CreateAppointmentComponent } from './pages/create-appointment/create-appointment.component';
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -51,7 +58,11 @@ import { CreateAppointmentComponent } from './pages/create-appointment/create-ap
     MatSelectModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [
     provideAnimationsAsync(),
