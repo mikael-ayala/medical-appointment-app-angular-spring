@@ -1,30 +1,33 @@
 <div class="create-appointment-container">
   <div class="card-container">
-    <mat-card class="advertisement-card" appearance="outlined">
-      <mat-card-header>
-        <div mat-card-avatar class="header-image"></div>
-        <mat-card-title>{{ advertisement.title }}</mat-card-title>
-        <mat-card-subtitle>{{ advertisement.user?.name + ' ' + advertisement.user?.lastname }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ advertisement.description }}</p>
-      </mat-card-content>
-      <mat-card-footer class="footer">
-        <mat-chip-set aria-label="Especialidades">
-          <mat-chip *ngFor="let specialty of advertisement.specialties">{{ specialty.name }}</mat-chip>
-        </mat-chip-set>
-      </mat-card-footer>
-    </mat-card>
-  </div>
-  <div class="right">
-    <mat-form-field>
-      <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
-         [min]="minDate" [max]="maxDate">
-      <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
-         [stepHour]="1" [color]="color" [touchUi]="false" [enableMeridian]="false"
-         [disableMinute]="true" [hideTime]="false">
-      </ngx-mat-datetime-picker>
-    </mat-form-field>
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+      <mat-card class="advertisement-card" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title>{{ advertisement.title }}</mat-card-title>
+          <mat-card-subtitle>{{ advertisement.user?.name + ' ' + advertisement.user?.lastname }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ advertisement.description }}</p>
+        </mat-card-content>
+        <mat-card-footer class="footer">
+          <mat-chip-set aria-label="Especialidades">
+            <mat-chip *ngFor="let specialty of advertisement.specialties">{{ specialty.name }}</mat-chip>
+          </mat-chip-set>
+        </mat-card-footer>
+      </mat-card>
+      <div class="right">
+        <mat-form-field>
+          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
+            [min]="minDate" [max]="maxDate">
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
+            [stepHour]="1" [color]="color" [touchUi]="false" [enableMeridian]="false"
+            [disableMinute]="true" [hideTime]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+      </div>
+      <button mat-flat-button type="submit" color="primary">Marcar Horário</button>
+    </form>
   </div>
 </div>

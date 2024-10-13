@@ -32,6 +32,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Advertisement> advertisements;
 
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

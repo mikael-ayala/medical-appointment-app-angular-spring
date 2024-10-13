@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { AdvertisementService } from '../../services/advertisement/advertisement.service';
 import { Advertisement } from '../../models/advertisement';
+import { Appointment } from '../../models/appointment';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { AppointmentService } from '../../services/appointment/appointment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-appointment',
@@ -25,13 +28,30 @@ export class CreateAppointmentComponent {
 
   public dateControl = new FormControl(new Date(this.year, this.month, this.day, 6, 0, 0));
 
+  appointmentForm = new FormGroup({
+    dateControl: new FormControl(''),
+  });
+
   constructor(
+    private router: Router,
     private advertisementService: AdvertisementService,
+    private appointmentService: AppointmentService,
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(param => this.id = param['id' as keyof Object]);
     this.advertisementService.findById(this.id).subscribe(advertisement => {
       this.advertisement = advertisement;
     });
+  }
+
+  onSubmit() {
+    let date = this.dateControl.value;
+
+    let appointment: Appointment = {};
+    appointment.date = date?.toISOString();
+    appointment.advertisementId = this.advertisement.id;
+    appointment.doctorId = this.advertisement.user?.id;
+
+    this.appointmentService.insert(appointment).subscribe(() => this.router.navigate(['/']));
   }
 }
