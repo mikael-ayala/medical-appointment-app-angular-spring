@@ -25,14 +25,18 @@ public class AppointmentService {
     private final UserRepository userRepository;
     private final AuthService authService;
 
+    @Transactional(readOnly = true)
+    public Boolean existsByDate(String date) throws ParseException {
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.US);
+        Date convertedDate = convertStringToDate(date);
+        return appointmentRepository.findByDate(convertedDate).isPresent();
+    }
+
     @Transactional
     public AppointmentDTO save(AppointmentRequestDTO body) throws ParseException {
         Appointment newAppointment = new Appointment();
-
-        //String pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'Z";
-        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.US);
-        Date date = simpleDateFormat.parse(body.date());
+        Date date = convertStringToDate(body.date());
         System.out.println(date);
         newAppointment.setDate(date);
 
@@ -47,5 +51,11 @@ public class AppointmentService {
 
         appointmentRepository.save(newAppointment);
         return new AppointmentDTO(newAppointment);
+    }
+
+    private Date convertStringToDate(String date) throws ParseException {
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.US);
+        return simpleDateFormat.parse(date);
     }
 }

@@ -5,10 +5,7 @@ import com.project.medicalapp.dto.AppointmentRequestDTO;
 import com.project.medicalapp.services.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
@@ -17,6 +14,12 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 public class AppointmentController {
     private final AppointmentService appointmentService;
+
+    @GetMapping("/{date}")
+    public ResponseEntity<Boolean> existsByDate(@PathVariable String date) throws ParseException {
+        boolean exists = appointmentService.existsByDate(date);
+        return ResponseEntity.ok(exists);
+    }
 
     @PostMapping
     public ResponseEntity<AppointmentDTO> save(@RequestBody AppointmentRequestDTO body) throws ParseException {

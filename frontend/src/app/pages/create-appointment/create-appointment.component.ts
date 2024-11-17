@@ -23,6 +23,8 @@ export class CreateAppointmentComponent {
   private month = new Date().getMonth();
   private day = new Date().getDate() + 1;
 
+  public disableButton: boolean = true;
+
   public minDate = new Date(this.year, this.month, this.day, 0, 0, 0);
   public maxDate = new Date(this.year, this.month + 2, this.day, 0, 0, 0);
 
@@ -31,6 +33,11 @@ export class CreateAppointmentComponent {
   appointmentForm = new FormGroup({
     dateControl: new FormControl(''),
   });
+
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    return day !== 0 && day !== 6;
+  };
 
   constructor(
     private router: Router,
@@ -41,6 +48,14 @@ export class CreateAppointmentComponent {
     this.route.params.subscribe(param => this.id = param['id' as keyof Object]);
     this.advertisementService.findById(this.id).subscribe(advertisement => {
       this.advertisement = advertisement;
+    });
+  }
+
+  checkAvailability() {
+    let date = this.dateControl.value;
+
+    this.appointmentService.existsByDate(date!.toISOString()).subscribe(b => {
+      b ? this.disableButton = true : this.disableButton = false;
     });
   }
 

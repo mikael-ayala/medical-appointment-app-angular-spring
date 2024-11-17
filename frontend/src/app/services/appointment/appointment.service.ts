@@ -14,6 +14,10 @@ export class AppointmentService {
     this.baseUrl = 'http://localhost:8080/appointments'
   }
 
+  existsByDate(date: String): Observable<Appointment> {
+    return this.http.get(this.baseUrl + `/${date}`);
+  }
+
   insert(body: Appointment): Observable<Appointment> {
     var header = { headers: new HttpHeaders().set('Authorization',  `Bearer ${sessionStorage.getItem('auth-token')}`)}
 

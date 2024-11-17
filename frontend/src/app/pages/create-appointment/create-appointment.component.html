@@ -18,7 +18,7 @@
       </mat-card>
       <div class="right">
         <mat-form-field>
-          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
+          <input matInput [matDatepickerFilter]="myFilter" [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
             [min]="minDate" [max]="maxDate">
           <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
           <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
@@ -27,7 +27,10 @@
           </ngx-mat-datetime-picker>
         </mat-form-field>
       </div>
-      <button mat-flat-button type="submit" color="primary">Marcar Horário</button>
+      <div class="buttons">
+        <button mat-flat-button type="button" (click)="checkAvailability()" color="primary">Verificar Disponibilidade</button>
+        <button mat-flat-button type="submit" [disabled]="disableButton" color="primary">Marcar Horário</button>
+      </div>
     </form>
   </div>
 </div>
